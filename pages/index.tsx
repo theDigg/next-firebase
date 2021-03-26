@@ -102,6 +102,12 @@ export default function Home(props) {
 
   const [postsEnd, setPostsEnd] = useState(false);
 
+  const socket = useSocket('status', (msg) => {
+    console.log(msg)
+  })
+
+  socket.emit('message', 'hello')
+
   // Get next page in pagination query
   const getMorePosts = async () => {
     setLoading(true);

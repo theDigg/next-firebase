@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 
-const socket = io();
+const socket = io('http://code-iq.dev');
 
 export default function useSocket(eventName, cb) {
   useEffect(() => {

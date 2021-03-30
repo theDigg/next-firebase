@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import * as http from "http";
 import next, { NextApiHandler } from "next";
 import * as socketio from "socket.io";
+import cors from "cors";
 
 const port: number = parseInt(process.env.PORT || "3000", 10);
 const dev: boolean = process.env.NODE_ENV !== "production";
@@ -10,6 +11,7 @@ const nextHandler: NextApiHandler = nextApp.getRequestHandler();
 
 nextApp.prepare().then(async () => {
   const app: Express = express();
+  app.use(cors());
   const server: http.Server = http.createServer(app);
   const io: socketio.Server = new socketio.Server();
   io.attach(server);
